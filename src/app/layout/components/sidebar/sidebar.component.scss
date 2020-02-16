@@ -1,4 +1,4 @@
-$topnav-background-color: #222;
+$topnav-background-color: #BFC0C2;
 .sidebar {
     border-radius: 0;
     position: fixed;
@@ -27,18 +27,18 @@ $topnav-background-color: #222;
             background: $topnav-background-color;
             border: 0;
             border-radius: 0;
-            color: #999;
+            color: #222;
             text-decoration: none;
             .fa {
                 margin-right: 10px;
             }
         }
         a:hover {
-            background: darken($topnav-background-color, 5%);
+            background: darken($topnav-background-color, 80%);
             color: #fff;
         }
         a.router-link-active {
-            background: darken($topnav-background-color, 5%);
+            background: darken($topnav-background-color, 80%);
             color: #fff;
         }
         .header-fields {
@@ -121,7 +121,7 @@ $topnav-background-color: #222;
             height: auto;
             li {
                 a {
-                    color: #fff;
+                    color: #222;
                     padding: 10px;
                     display: block;
                 }
@@ -172,7 +172,7 @@ $topnav-background-color: #222;
         font-size: 23px;
     }
     &:hover {
-        background: darken($topnav-background-color, 5%);
+        background: darken($topnav-background-color, 80%);
         color: #fff;
     }
     border-top: 1px solid #999;
