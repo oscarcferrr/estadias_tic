@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { AuthGuard } from '../shared';
-import { EmpresasModule } from './empresas/empresas.module';
+
 
 const routes: Routes = [
     {
@@ -21,6 +21,8 @@ const routes: Routes = [
             {path: 'alumnos', loadChildren: () => import('./alumnos/alumnos.module').then(m => m.AlumnosModule),
             canActivate: [AuthGuard]},
             {path: 'empresas', loadChildren: () => import('./empresas/empresas.module').then(m => m.EmpresasModule),
+            canActivate: [AuthGuard]},
+            {path: 'proyectos', loadChildren: () => import('./proyectos/proyectos.module').then(m => m.ProyectosModule),
             canActivate: [AuthGuard]}
         ]
     }

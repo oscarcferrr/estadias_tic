@@ -36,5 +36,10 @@
     "Password": "Contraseña",
     "Repeat Password": "Repetir Contraseña",
     "Register": "Registrarse",
-    "Log in": "Entrar"
+    "Log in": "Entrar",
+    "About": "Información",
+    "Students": "Alumnos",
+    "Business": "Empresas",
+    "Projects": "Proyectos",
+    "Users": "Usuarios"
 }

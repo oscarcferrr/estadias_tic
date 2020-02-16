@@ -1,3 +1,173 @@
-<p>
-  proyectos works!
-</p>
+<div [@routerTransition]>
+    <div class="row m-4">
+        <div class="col d-flex justify-content-end">
+            <button (click)="open(content)" class="btn btn-dark">
+                <i class="fa fa-plus"></i>
+                Agregar Proyecto
+            </button>
+        </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <table datatable [dtOptions]="dtOptions"
+        class="mt-3 animated fadeIn faster">
+        <thead >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Area</th>
+          <th scope="col">Responsable</th>
+          <th scope="col">Calificación</th>
+          <th scope="col">Comentarios</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let a of alumnos; let i=index ">
+            <td>{{ i+1 }}</td>
+            <td>{{ a.nombre }}</td>
+            <td>{{ a.nivel }}</td>
+            <td>{{ a.carrera }}</td>
+            <td>{{ a.sede}}</td>
+            <td>{{ a.sede}}</td>
+            <td>
+                <button (click)="actualizar(c, content)"
+                        class="btn btn-info mr-1">
+                        <i class="fa fa-pencil"></i>
+                  </button>
+                  <button
+                       (click)="borrar(c , i)"
+                       class="btn btn-danger">
+                    <i class="fa fa-trash"></i>
+                  </button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <form (ngSubmit)="guardar(formulario, content)" #formulario="ngForm">
+        <div class="modal-header text-center">
+            <h4 class="modal-title">Proyecto</h4>
+            <button
+                type="button"
+                class="close"
+                aria-label="Close"
+                (click)="d('Cross click')"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <i class="fa fa fa-id-card-alt"></i>
+                    <label>Nombre</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        required
+                        name="nombre"
+                        placeholder="Nombre del proyecto"
+                    />
+                </div>
+
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <i class="fa fa fa-id-card-alt"></i>
+                  <label>Responsable</label>
+                  <input
+                      type="text"
+                      class="form-control"
+                      required
+                      name="responsable"
+                      placeholder="Reponsable"
+                  />
+              </div>
+
+          </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Area</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        required
+                        name="area"
+                        placeholder="area"
+                    />
+                </div>
+                <div class="form-group col-md-6 ">
+                    <label for="nivel">Calificación</label>
+                    <input
+                    type="text"
+                    class="form-control"
+                    required
+                    name="calificacion"
+                    placeholder="Calificación"
+                />
+                </div>
+
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                  <i class="fa fa fa-id-card-alt"></i>
+                  <label>Comentarios</label>
+                  <input
+                      type="text"
+                      class="form-control"
+                      required
+                      name="comentarios"
+                      placeholder="Comentarios"
+                  />
+              </div>
+
+          </div>
+
+            <!-- <div class="form-row">
+                <div
+                    class="form-group col-md-6">
+                    <label>Fecha de alta</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        disabled
+                        name="fecha_alta"
+                        placeholder="Horario"
+                    />
+                </div>
+                <div
+                    class="form-group col-md-6" >
+                    <label>Fecha de ultima actualiazación</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        disabled
+                        name="fecha_update"
+                        placeholder="Horario"
+                    />
+                </div>
+            </div> -->
+        </div>
+        <div class="modal-footer align-content-center">
+            <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="c('Close click')"
+            >
+                Cerrar
+            </button>
+
+            <button
+                [disabled]="!formulario.valid"
+                class="btn btn-primary"
+                type="submit"
+            >
+                <i class="fa fa-save"></i>
+                Guardar
+            </button>
+        </div>
+    </form>
+  </ng-template>
