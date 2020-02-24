@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { DataTablesModule } from 'angular-datatables';
+import {ArchwizardModule } from 'angular-archwizard';
 
 import { EmpresasRoutingModule } from './empresas-routing.module';
 import { EmpresasComponent } from './empresas.component';
@@ -16,7 +18,8 @@ import { EmpresasComponent } from './empresas.component';
     EmpresasRoutingModule,
     FormsModule,
     NgbModalModule,
-    DataTablesModule
+    DataTablesModule,
+    ArchwizardModule
   ]
 })
 export class EmpresasModule { }

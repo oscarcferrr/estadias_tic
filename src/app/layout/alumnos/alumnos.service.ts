@@ -1,0 +1,34 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { AlumnosModel } from '../alumnos/alumnos.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AlumnosService {
+ private url = 'http://localhost:3700';
+ private headers = new HttpHeaders({ });
+
+  constructor(private http: HttpClient) { }
+
+  getAlumnos() {
+    return this.http.get(`${this.url}/students`);
+  }
+
+  altaAlumno(alumno: AlumnosModel) {
+    return this.http.post(`${this.url}/save-student`, alumno);
+  }
+  actualizaAlumno(alumno: AlumnosModel) {
+    return this.http.put(`${ this.url }/update-student/:id${alumno.id_alumno}`, alumno);
+ }
+ borrarAlumno( alumno: AlumnosModel ) {
+    const params = new HttpParams()
+    .set('id', String (alumno.id_alumno));
+    return this.http.delete(`${this.url}/delete-student/:id`, {params: params});
+  }
+
+
+
+}
+

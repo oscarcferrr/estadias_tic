@@ -1,7 +1,10 @@
 <div [@routerTransition]>
+    <div class="card mb-3">
+        <div class="card-header text-white" style="background-color: black;">Alumnos</div>
+        <div class="card-body">
     <div class="row m-4">
         <div class="col d-flex justify-content-end">
-            <button (click)="open(content)" class="btn btn-dark">
+            <button (click)="alta(content)" class="btn btn-dark">
                 <i class="fa fa-plus"></i>
                 Agregar Alumno
             </button>
@@ -17,7 +20,7 @@
           <th scope="col">Nombre</th>
           <th scope="col">Nivel</th>
           <th scope="col">Carerra</th>
-          <th scope="col">Sede</th>
+          <th scope="col">No. Seguro Social</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -27,14 +30,14 @@
             <td>{{ a.nombre }}</td>
             <td>{{ a.nivel }}</td>
             <td>{{ a.carrera }}</td>
-            <td>{{ a.sede}}</td>
+            <td>{{ a.numseguro}}</td>
             <td>
-                <button (click)="actualizar(c, content)"
+                <button (click)="actualizar(a, content)"
                         class="btn btn-info mr-1">
                         <i class="fa fa-pencil"></i>
                   </button>
                   <button
-                       (click)="borrar(c , i)"
+                       (click)="borrar(a, i)"
                        class="btn btn-danger">
                     <i class="fa fa-trash"></i>
                   </button>
@@ -43,6 +46,10 @@
       </tbody>
     </table>
 </div>
+
+</div>
+</div>
+
 <ng-template #content let-c="close" let-d="dismiss">
     <form (ngSubmit)="guardar(formulario, content)" #formulario="ngForm">
         <div class="modal-header text-center">
@@ -66,6 +73,7 @@
                         type="text"
                         class="form-control"
                         required
+                        [(ngModel)]="alumno.nombre"
                         name="nombre"
                         placeholder="Nombre completo del Alumno"
                     />
@@ -79,6 +87,7 @@
                         type="text"
                         class="form-control"
                         required
+                        [(ngModel)]="alumno.numseguro"
                         name="numseguro"
                         placeholder="Número del seguro social"
                     />
@@ -86,8 +95,11 @@
                 <div class="form-group col-md-6 ">
                     <label for="nivel">Nivel</label>
                     <select class="form-control"
-                        name="nivel" id="nivel"
+                            name="nivel"
+                             id="nivel"
+                            [(ngModel)]="alumno.nivel"
                        >
+
                         <option default selected>Seleccione un nivel académico...</option>
                         <option value="TSU">Técnico Superior Universitario</option>
                         <option value="ING">Ingeniería</option>
@@ -100,7 +112,9 @@
                 <div class="form-group col-md-6 ">
                     <label for="carrera">Carrera</label>
                     <select class="form-control"
-                        name="carrera" id="nivel"
+                             name="carrera"
+                             id="nivel"
+
                        >
                         <option default selected>Seleccione la carrera...</option>
                         <option value="TIC">Tecnologías de la Información y Comunicación</option>
@@ -109,7 +123,9 @@
                 <div class="form-group col-md-6 ">
                     <label for="carrera">Sede</label>
                     <select class="form-control"
-                        name="carrera" id="nivel"
+                             name="sede"
+                             id="sede"
+                             [(ngModel)]="alumno.sede"
                        >
                         <option default selected>Seleccione la sede...</option>
                         <option value="1Mayo">1 de Mayo</option>

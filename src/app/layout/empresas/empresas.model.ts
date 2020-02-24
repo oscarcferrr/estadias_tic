@@ -4,11 +4,10 @@ export class AlumnosModel {
     numseguro: string;
     nivel: {type: string, enum: ['TSU', 'ING'], default: 'TSU'};
     carrera: {type: string, enum: ['TIC', 'ITIC'], default: 'TIC'};
-    sede = '1Mayo';
-    estatus = 'activo';
-    id_asesorin: Number = 1;
-    id_asesoraca: Number = 1;
-    id_proyecto: Number = 1;
+    sede = '';
+    id_asesorin: Number = 0;
+    id_asesoraca: Number = 0;
+    id_proyecto: Number = 0;
     fecha_alta: Date;
     fecha_update: Date ;
 }
