@@ -74,6 +74,7 @@ getAlumnos() {
       let peticion: Observable <any>;
       console.log(this.alumno);
       if (!this.alumno.id_alumno) {
+          this.alumno.estatus = 'activo';
         peticion = this.alumnosService.altaAlumno(this.alumno);
         // this.consultorios.push(this.consultorio);
         } else {
@@ -84,7 +85,8 @@ getAlumnos() {
           peticion.subscribe( resp => {
             this.ngOnInit();
             Swal.fire({
-              title: this.alumno.nombre,
+              title: this.alumno.nombres + ' ' + this.alumno.apellidoPaterno
+              + ' ' + this.alumno.apellidoMaterno,
               text: 'Se actualizo correctamente',
               icon: 'success'
             });
@@ -111,7 +113,7 @@ getAlumnos() {
     console.log(this.alumno);
     Swal.fire({
       title: '¿Está seguro?',
-      text: `Está seguro de que desea borrar a ${ this.alumno.nombre}`,
+      text: `Está seguro de que desea borrar a ${ this.alumno.nombres}`,
      icon: 'question',
       showConfirmButton: true,
       showCancelButton: true

@@ -18,19 +18,19 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Nivel</th>
-          <th scope="col">Carerra</th>
-          <th scope="col">No. Seguro Social</th>
+          <th scope="col">Matricula</th>
+          <th scope="col">Carrera</th>
+          <th scope="col">Periodo</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr  *ngFor="let a of alumnos; let i=index ">
             <td>{{ i+1 }}</td>
-            <td>{{ a.nombre }}</td>
-            <td>{{ a.nivel }}</td>
+            <td>{{ a.nombres }}</td>
+            <td>{{ a.matricula }}</td>
             <td>{{ a.carrera }}</td>
-            <td>{{ a.numseguro}}</td>
+            <td>{{ a.periodo}}</td>
             <td>
                 <button (click)="actualizar(a, content)"
                         class="btn btn-info mr-1">
@@ -68,99 +68,162 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <i class="fa fa fa-id-card-alt"></i>
-                    <label>Nombre</label>
+                    <label>Nombre(s)</label>
                     <input
                         type="text"
                         class="form-control"
                         required
-                        [(ngModel)]="alumno.nombre"
-                        name="nombre"
-                        placeholder="Nombre completo del Alumno"
+                        [(ngModel)]="alumno.nombres"
+                        name="nombres"
+                        placeholder="Nombre(s) del alumno"
                     />
                 </div>
 
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label>Número del seguro social</label>
+                    <label>Apellido paterno</label>
                     <input
                         type="text"
                         class="form-control"
                         required
-                        [(ngModel)]="alumno.numseguro"
-                        name="numseguro"
-                        placeholder="Número del seguro social"
+                        [(ngModel)]="alumno.apellidoPaterno"
+                        name="apellidoPaterno"
+                        placeholder="Apellido paterno"
+                    />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Apellido materno</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        required
+                        [(ngModel)]="alumno.apellidoMaterno"
+                        name="apellidoMaterno"
+                        placeholder="Apellido materno"
+                    />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Matricula</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        required
+                        [(ngModel)]="alumno.matricula"
+                        name="matricula"
+                        placeholder="Matricula"
                     />
                 </div>
                 <div class="form-group col-md-6 ">
-                    <label for="nivel">Nivel</label>
+                    <label for="carrera">Periodo</label>
                     <select class="form-control"
-                            name="nivel"
-                             id="nivel"
-                            [(ngModel)]="alumno.nivel"
+                             name="periodo"
+                             id="periodo"
+                             [(ngModel)]="alumno.periodo"
                        >
-
-                        <option default selected>Seleccione un nivel académico...</option>
-                        <option value="TSU">Técnico Superior Universitario</option>
-                        <option value="ING">Ingeniería</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6 ">
-                    <label for="carrera">Carrera</label>
-                    <select class="form-control"
-                             name="carrera"
-                             id="nivel"
-
-                       >
-                        <option default selected>Seleccione la carrera...</option>
-                        <option value="TIC">Tecnologías de la Información y Comunicación</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6 ">
-                    <label for="carrera">Sede</label>
-                    <select class="form-control"
-                             name="sede"
-                             id="sede"
-                             [(ngModel)]="alumno.sede"
-                       >
-                        <option default selected>Seleccione la sede...</option>
-                        <option value="1Mayo">1 de Mayo</option>
-                        <option value="Creativa">Ciudad Creativa Digital</option>
+                        <option default selected>Seleccione una opción...</option>
+                        <option value="Enero-Abril">Enero - Abril</option>
+                        <option value="Mayo-Agosto">Mayo - Agosto</option>
+                        <option value="Septiembre-Diciembre">Septiembre - Diciembre</option>
                     </select>
                 </div>
             </div>
             <div class="form-row">
-                <div
-                    class="form-group col-md-6"
-
-                >
-                    <label>Fecha de alta</label>
+                <div class="form-group col-md-6">
+                    <label>Teléfono</label>
                     <input
-                        type="text"
+                        type="number"
                         class="form-control"
-                        disabled
-                        name="fecha_alta"
-                        placeholder="Horario"
+                        required
+                        [(ngModel)]="alumno.telefono"
+                        name="telefono"
+                        placeholder="Teléfono"
                     />
                 </div>
-                <div
-                    class="form-group col-md-6"
-
-                >
-                    <label>Fecha de ultima actualiazación</label>
+                <div class="form-group col-md-6">
+                    <label>Correo</label>
                     <input
-                        type="text"
+                        type="email"
                         class="form-control"
-                        disabled
-                        name="fecha_update"
-                        placeholder="Horario"
+                        required
+                        [(ngModel)]="alumno.correo"
+                        name="correo"
+                        placeholder="correo"
                     />
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 ">
+                    <label for="nivel">Carrera</label>
+                    <select class="form-control"
+                            name="carrera"
+                             id="carrera"
+                            [(ngModel)]="alumno.carrera"
+                       >
+
+                        <option default selected>Seleccione una opción...</option>
+                        <option value="TSU-TIC">Técnico Superior Universitario-TIC</option>
+                        <option value="ING-TIC">Ingeniería - TIC</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6 ">
+                    <label for="nivel">Turno</label>
+                    <select class="form-control"
+                            name="turno"
+                             id="turno"
+                            [(ngModel)]="alumno.turno"
+                       >
+
+                        <option default selected>Seleccione una opción...</option>
+                        <option value="M">Matutino</option>
+                        <option value="v">Vespertino</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-4 ">
+                    <label for="nivel">Género</label>
+                    <select class="form-control"
+                            name="genero"
+                             id="genero"
+                            [(ngModel)]="alumno.genero"
+                       >
+
+                        <option default selected>Seleccione una opción...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Edad</label>
+                    <input
+                        type="number"
+                        class="form-control"
+                        required
+                        [(ngModel)]="alumno.edad"
+                        name="edad"
+                        placeholder="edad"
+                    />
+                </div>
+                <div class="form-group col-md-4 ">
+                    <label for="nivel">Reingreso</label>
+                    <select class="form-control"
+                            name="reingreso"
+                             id="reingreso"
+                            [(ngModel)]="alumno.reingreso"
+                       >
+
+                        <option default selected>Seleccione una opción...</option>
+                        <option value="Si">Si</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+
+
         </div>
         <div class="modal-footer align-content-center">
             <button

@@ -9,6 +9,11 @@ import { AlumnosModel } from '../alumnos/alumnos.model';
 export class AlumnosService {
  private url = 'http://localhost:3700';
  private headers = new HttpHeaders({ });
+ httpOptions = {
+    headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+    })
+    };
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +30,7 @@ export class AlumnosService {
  borrarAlumno( alumno: AlumnosModel ) {
     const params = new HttpParams()
     .set('id', String (alumno.id_alumno));
-    return this.http.delete(`${this.url}/delete-student/:id`, {params: params});
+    return this.http.delete(`${this.url}/delete-student/:id`, { headers: this.headers, params: params});
   }
 
 
