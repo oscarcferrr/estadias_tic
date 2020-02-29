@@ -28,5 +28,18 @@
     "Pending Task" : "Tarea pendiente",
     "In queue" : "En cola",
     "Mail" : "Correo",
-    "View All" : "Ver todo"
+    "View All" : "Ver todo",
+    "More Themes" : "Más temas",
+    "Collapse Sidebar" : "Contraer barra lateral",
+    "Full Name": "Nombre Completo",
+    "Email": "Correo Electrónico",
+    "Password": "Contraseña",
+    "Repeat Password": "Repetir Contraseña",
+    "Register": "Registrarse",
+    "Log in": "Entrar",
+    "About": "Información",
+    "Students": "Alumnos",
+    "Business": "Empresas",
+    "Projects": "Proyectos",
+    "Users": "Usuarios"
 }

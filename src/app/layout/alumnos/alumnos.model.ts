@@ -22,13 +22,13 @@ export class AlumnosModel {
     periodo: string;
     telefono: string;
     correo: string;
-    carrera: {type: string, enum: ['TSU-TIC', 'ING-TIC']};
-    turno: {type: string, enum: ['M', 'V']};
-    genero: {type: string, enum: ['M', 'F']};
+    carrera: { type: string, enum: ['TSU-TIC', 'ING-TIC'] };
+    turno: { type: string, enum: ['M', 'V'] };
+    genero: { type: string, enum: ['M', 'F'] };
     edad: Number;
-    reingreso: {type: string, enum: ['Si', 'No']};
+    reingreso: { type: string, enum: ['Si', 'No'] };
     estatus: string;
-    id_asesorin: Number = 1;
-    id_asesoraca: Number = 1;
-    id_proyecto: Number = 1;
+    id_asesorin: Number = 0;
+    id_asesoraca: Number = 0;
+    id_proyecto: Number = 0;
 }
