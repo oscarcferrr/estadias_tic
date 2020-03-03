@@ -31,4 +31,5 @@ export class AlumnosModel {
     id_asesorin: Number = 0;
     id_asesoraca: Number = 0;
     id_proyecto: Number = 0;
+    password: string;
 }

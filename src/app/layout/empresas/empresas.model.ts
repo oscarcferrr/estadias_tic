@@ -1,4 +1,4 @@
-export class AlumnosModel {
+export class EmpresasModel {
     id_alumno: Number = 0;
     nombre: string;
     numseguro: string;

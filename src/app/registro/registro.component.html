@@ -1,0 +1,69 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <!--<img src="../../assets/images/logo-utj.png" id="icon" alt="logo Icon" /> -->
+            <h1>Registro Alumno</h1>
+        </div>
+
+        <!-- Login Form -->
+        <form (ngSubmit)="guardar(formulario, content)" #formulario="ngForm">
+            <input
+                type="text"
+                [(ngModel)]="alumno.matricula"
+                class="fadeIn second"
+                required
+                name="matricula"
+                placeholder="Codigo"
+            />
+            <input
+                type="text"
+                [(ngModel)]="alumno.nombres"
+                required
+                class="fadeIn second"
+                name="nombres"
+                placeholder="Nombre(s)"
+            />
+            <input
+                type="text"
+                required
+                class="fadeIn second"
+                [(ngModel)]="alumno.apellidoPaterno"
+                name="apellidoPaterno"
+                placeholder="Apellido paterno"
+            />
+            <input
+                type="text"
+                [(ngModel)]="alumno.apellidoMaterno"
+                required
+                class="fadeIn second"
+                name="apellidoMaterno"
+                placeholder="Apellido materno"
+            />
+            <input
+                type="email"
+                [(ngModel)]="alumno.correo"
+                required
+                class="fadeIn second"
+                name="login"
+                placeholder="correo"
+            />
+            <input
+                type="text"
+                [(ngModel)]="alumno.password"
+                class="fadeIn third"
+                name="password"
+                placeholder="Contraseña"
+            />
+
+            <input type="submit" class="fadeIn fourth" value="Registrar" />
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover" [routerLink]="['/login']">Regresar</a>
+        </div>
+    </div>
+</div>
