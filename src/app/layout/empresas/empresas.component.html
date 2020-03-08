@@ -1,258 +1,333 @@
 <div [@routerTransition]>
-
     <div class="card mb-3">
-        <div class="card-header text-white" style="background-color: black;">Empresas</div>
+        <div class="card-header text-white" style="background-color: black;">
+            Empresas
+        </div>
         <div class="card-body">
             <div class="row m-4">
                 <div class="col d-flex justify-content-end">
-                    <button (click)="open(content)" class="btn btn-dark">
+                    <button (click)="open(content)" class="btn btn-dark" mdbBtn>
                         <i class="fa fa-plus"></i>
                         Agregar Empresa
                     </button>
                 </div>
             </div>
             <div class="container-fluid">
-                <table datatable [dtOptions]="dtOptions" class="mt-3 animated fadeIn faster">
+                <table
+                    datatable
+                    [dtOptions]="dtOptions"
+                    class="mt-3 animated fadeIn faster"
+                >
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nombre comercial</th>
-                            <th scope="col">Razon social</th>
-                            <th scope="col">Giro</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Rfc</th>
+                            <th scope="col">tipo</th>
                             <th scope="col">Calificación</th>
-                            <th scope="col">Descripción</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr  *ngFor="let a of alumnos; let i=index ">
-                      <td>{{ i+1 }}</td>
-                      <td>{{ a.nombre }}</td>
-                      <td>{{ a.nivel }}</td>
-                      <td>{{ a.carrera }}</td>
-                      <td>{{ a.sede}}</td>
-                      <td>
-                          <button (click)="actualizar(c, content)"
-                                  class="btn btn-info mr-1">
-                                  <i class="fa fa-pencil"></i>
-                            </button>
-                            <button
-                                 (click)="borrar(c , i)"
-                                 class="btn btn-danger">
-                              <i class="fa fa-trash"></i>
-                            </button>
-                      </td>
-                  </tr> -->
+                        <tr *ngFor="let e of empresas; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ e.nombre }}</td>
+                            <td>{{ e.rfc }}</td>
+                            <td>{{ e.tipo }}</td>
+                            <td>{{ e.calificacion }}</td>
+                            <td>
+                                <button
+                                    (click)="actualizar(e, content)"
+                                    class="btn btn-info mr-1"
+                                >
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                                <button
+                                    (click)="borrar(e, i)"
+                                    class="btn btn-danger"
+                                >
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
-
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
+    <div
+        class="modal-header rounded z-depth-3
+                     elegant-color-dark  white-text text-center white-text"
+    >
+        <h4 class="modal-title white-text w-100 font-weight-bold py-2">
+            Empresa
+        </h4>
+        <button
+            type="button"
+            class="close text-white"
+            aria-label="Close"
+            (click)="d('Cross click')"
+        >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <form #formulario="ngForm">
-        <!-- <form (ngSubmit)="guardar(formulario, content)" #formulario="ngForm"> -->
-        <div class="modal-header text-center">
-            <h4 class="modal-title">Empresa</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
         <div class="modal-body">
-
-            <ng-template #content let-c="close" let-d="dismiss">
-                <form #formulario="ngForm">
-                    <!-- <form (ngSubmit)="guardar(formulario, content)" #formulario="ngForm"> -->
-                    <div class="modal-header text-center">
-                        <h4 class="modal-title">Empresa</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <aw-wizard navBarLayout="large-filled">
+                <aw-wizard-step
+                    [navigationSymbol]="{ symbol: '1' }"
+                    stepTitle="Informacion personal"
+                >
+                    <div class="form-row mt-0">
+                        <div class="md-form col-md-12">
+                            <mdb-icon
+                                fas
+                                icon="building"
+                                class="prefix grey-text"
+                            ></mdb-icon>
+                            <label>Nombre</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                required
+                                name="nombre"
+                                [(ngModel)]="empresa.nombre"
+                                mdbInput
+                            />
+                        </div>
                     </div>
-
-                    <div class="modal-body">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <i class="fa fa fa-id-card-alt"></i>
-                                <label>Nombre Comercial</label>
-                                <input type="text" class="form-control" required name="nombrecomercial"
-                                    placeholder="Nombre comercial" />
-                            </div>
-
+                    <div class="form-row mt-0">
+                        <div class="md-form col-md-6">
+                            <mdb-icon
+                                fas
+                                icon="passport"
+                                class="prefix grey-text"
+                            ></mdb-icon>
+                            <label>RFC</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                required
+                                name="rfc"
+                                [(ngModel)]="empresa.rfc"
+                                mdbInput
+                            />
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Razón Social</label>
-                                <input type="text" class="form-control" required name="razonsocial"
-                                    placeholder="Razón Social" />
-                            </div>
-                            <div class="form-group col-md-6 ">
-                                <label for="nivel">Número de Empleados</label>
-                                <input type="text" class="form-control" required name="numempleados"
-                                    placeholder="Número de empleados" />
-                            </div>
-
+                        <div class="md-form col-md-6 ">
+                            <mdb-icon
+                                fas
+                                icon="briefcase"
+                                class="prefix grey-text"
+                            ></mdb-icon>
+                            <label for="nivel">Giro</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                required
+                                name="giro"
+                                [(ngModel)]="empresa.giro"
+                                mdbInput
+                            />
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <i class="fa fa fa-id-card-alt"></i>
-                                <label>Domicilio</label>
-                                <input type="text" class="form-control" required name="domicilio"
-                                    placeholder="Domicilio" />
-                            </div>
-
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6 ">
-                                <label for="carrera">Giro</label>
-                                <select class="form-control" name="giro" id="nivel">
-                                    <option default selected>Seleccione el giro...</option>
-                                    <option value="tecnologias">Tecnologías</option>
-                                    <option value="automotriz">Automotriz</option>
-                                    <option value="servicioCliente">Servicio al cliente</option>
-                                    <option value="construccion">Contrucción</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Calificación</label>
-                                <input type="text" class="form-control" disabled name="calificacion"
-                                    placeholder="Calificación" />
-                            </div>
-                        </div>
-                        <div class="form-row">
-
-                            <div class="form-group col-md-12">
-                                <i class="fa fa fa-id-card-alt"></i>
-                                <label>Descripción</label>
-                                <input type="text" class="form-control" required name="descripcion"
-                                    placeholder="Descripción" />
-                            </div>
-                        </div>
-                        <!-- <div class="form-row">
-                <div
-                    class="form-group col-md-6">
-                    <label>Fecha de alta</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        disabled
-                        name="fecha_alta"
-                        placeholder="Horario"
-                    />
-                </div>
-                <div
-                    class="form-group col-md-6" >
-                    <label>Fecha de ultima actualiazación</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        disabled
-                        name="fecha_update"
-                        placeholder="Horario"
-                    />
-                </div>
-            </div> -->
                     </div>
-                    <div class="modal-footer align-content-center">
-                        <button type="button" class="btn btn-secondary" (click)="c('Close click')">
-                            Cerrar
-                        </button>
-
-                        <button [disabled]="!formulario.valid" class="btn btn-primary" type="submit">
-                            <i class="fa fa-save"></i>
-                            Guardar
-                        </button>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 ">
+                            <label for="carrera">Tipo</label>
+                            <select
+                                class="form-control"
+                                name="tipo"
+                                [(ngModel)]="empresa.tipo"
+                            >
+                                <option default selected
+                                    >Seleccione una opción...</option
+                                >
+                                <option value="Privado">Privado</option>
+                                <option value="Gubernamental"
+                                    >Gubernamental</option
+                                >
+                                <option value="Fundacion">Fundación</option>
+                                <option value="Sindicato">Sindicato</option>
+                                <option value="Asociacion">Asociacion</option>
+                                <option value="Religiosa">Religiosa</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="carrera">Area asignada</label>
+                            <select
+                                class="form-control"
+                                name="areaAsignada"
+                                [(ngModel)]="empresa.areaAsignada"
+                            >
+                                <option default selected
+                                    >Seleccione una opción...</option
+                                >
+                                <option value="Desarrollo">Desarrollo</option>
+                                <option value="Soporte">Soporte</option>
+                                <option value="Infraestructura"
+                                    >Infraestructura</option
+                                >
+                            </select>
+                        </div>
                     </div>
-                </form>
-
-
-            </ng-template>
-            <aw-wizard>
-                <aw-wizard-step stepTitle="Title of step 1">
-                    Content of Step 1
-                    <button type="button" awNextStep>Next Step</button>
-                    <button type="button" [awGoToStep]="{stepIndex: 2}">Go directly to third Step</button>
+                    <div class="form-row">
+                        <div class="form-group col-md-6 ">
+                            <label for="carrera">Presencia</label>
+                            <select
+                                class="form-control"
+                                name="presencia"
+                                [(ngModel)]="empresa.presencia"
+                            >
+                                <option default selected
+                                    >Seleccione una opción...</option
+                                >
+                                <option value="Local">Local</option>
+                                <option value="Nacional">Nacional</option>
+                                <option value="Internacional"
+                                    >Internacional</option
+                                >
+                                <option value="construccion"
+                                    >Contrucción</option
+                                >
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Calificación</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                disabled
+                                name="calificacion"
+                                placeholder="Calificación"
+                            />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="md-form col-md-12">
+                            <label>Descripción</label>
+                            <textarea
+                                type="text"
+                                class="md-textarea form-control"
+                                required
+                                name="descripcion"
+                                mdbInput
+                            ></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-dark pull-right" mdbBtn awNextStep>Siguiente</button>
                 </aw-wizard-step>
-                <aw-wizard-step stepTitle="Title of step 2" awOptionalStep>
-                    Content of Step 2
-                    <button type="button" awPreviousStep>Go to previous step</button>
-                    <button type="button" awNextStep>Go to next step</button>
-                </aw-wizard-step>
-                <aw-wizard-step stepTitle="Title of step 3">
-                    Content of Step 3
-                    <button type="button" awPreviousStep>Previous Step</button>
-                    <!-- <button type="button" (click)="finishFunction()">Finish</button> -->
+                <aw-wizard-step
+                    [navigationSymbol]="{ symbol: '2' }"
+                    stepTitle="Domicilio"
+                >
+                <div class="form-row mt-0">
+                    <div class="md-form col-md-6">
+                        <mdb-icon
+                            fas
+                            icon="road"
+                            class="prefix grey-text"
+                        ></mdb-icon>
+                        <label>Calle</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            required
+                            name="rfc"
+                            [(ngModel)]="empresa.calle"
+                            mdbInput
+                        />
+                    </div>
+                    <div class="md-form col-md-3 ">
+
+                        <label for="nivel">No. Exterior</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            required
+                            name="giro"
+                            [(ngModel)]="empresa.noExterior"
+                            mdbInput
+                        />
+                    </div>
+                    <div class="md-form col-md-3 ">
+
+                        <label for="nivel">No. Interior</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            required
+                            name="giro"
+                            [(ngModel)]="empresa.noInterior"
+                            mdbInput
+                        />
+                    </div>
+                </div>
+                <div class="form-row mt-0">
+                    <div class="md-form col-md-4">
+                        <mdb-icon
+                            fas
+                            icon="city"
+                            class="prefix grey-text"
+                        ></mdb-icon>
+                        <label>Colonia</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            required
+                            name="colonia"
+                            [(ngModel)]="empresa.colonia"
+                            mdbInput
+                        />
+                    </div>
+                    <div class="md-form col-md-4 ">
+
+                        <label for="nivel">Municipio</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            required
+                            name="munincipio"
+                            [(ngModel)]="empresa.municipio"
+                            mdbInput
+                        />
+                    </div>
+                    <div class="md-form col-md-4 ">
+
+                        <label for="nivel">Codigo Postal</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            required
+                            name="cp"
+                            [(ngModel)]="empresa.cp"
+                            mdbInput
+                        />
+                    </div>
+                </div>
+                <button type="button" class="btn btn-dark pull-left" mdbBtn awPreviousStep>Anterior</button>
                 </aw-wizard-step>
             </aw-wizard>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <i class="fa fa fa-id-card-alt"></i>
-                    <label>Nombre Comercial</label>
-                    <input type="text" class="form-control" required name="nombrecomercial"
-                        placeholder="Nombre comercial" />
-                </div>
-
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Razón Social</label>
-                    <input type="text" class="form-control" required name="razonsocial" placeholder="Razón Social" />
-                </div>
-                <div class="form-group col-md-6 ">
-                    <label for="nivel">Número de Empleados</label>
-                    <input type="text" class="form-control" required name="numempleados"
-                        placeholder="Número de empleados" />
-                </div>
-
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-12">
-                    <i class="fa fa fa-id-card-alt"></i>
-                    <label>Domicilio</label>
-                    <input type="text" class="form-control" required name="domicilio" placeholder="Domicilio" />
-                </div>
-
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6 ">
-                    <label for="carrera">Giro</label>
-                    <select class="form-control" name="giro" id="nivel">
-                        <option default selected>Seleccione el giro...</option>
-                        <option value="tecnologias">Tecnologías</option>
-                        <option value="automotriz">Automotriz</option>
-                        <option value="servicioCliente">Servicio al cliente</option>
-                        <option value="construccion">Contrucción</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Calificación</label>
-                    <input type="text" class="form-control" disabled name="calificacion" placeholder="Calificación" />
-                </div>
-            </div>
-            <div class="form-row">
-
-                <div class="form-group col-md-12">
-                    <i class="fa fa fa-id-card-alt"></i>
-                    <label>Descripción</label>
-                    <input type="text" class="form-control" required name="descripcion" placeholder="Descripción" />
-                </div>
-            </div>
         </div>
+
         <div class="modal-footer align-content-center">
-            <button type="button" class="btn btn-secondary" (click)="c('Close click')">
+            <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="c('Close click')"
+            >
                 Cerrar
             </button>
 
-            <button [disabled]="!formulario.valid" class="btn btn-primary" type="submit">
+            <button
+                [disabled]="!formulario.valid"
+                class="btn btn-primary"
+                type="submit"
+            >
                 <i class="fa fa-save"></i>
                 Guardar
             </button>
         </div>
     </form>
-
-
 </ng-template>

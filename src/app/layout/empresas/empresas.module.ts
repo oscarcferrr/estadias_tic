@@ -8,6 +8,7 @@ import {ArchwizardModule } from 'angular-archwizard';
 
 import { EmpresasRoutingModule } from './empresas-routing.module';
 import { EmpresasComponent } from './empresas.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 
@@ -19,7 +20,8 @@ import { EmpresasComponent } from './empresas.component';
     FormsModule,
     NgbModalModule,
     DataTablesModule,
-    ArchwizardModule
+    ArchwizardModule,
+    MDBBootstrapModule.forRoot()
   ]
 })
 export class EmpresasModule { }

@@ -1,69 +1,201 @@
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-        <!-- Tabs Titles -->
+<!-- Jumbotron -->
+<div class="jumbotron text-center m-2 ">
 
-        <!-- Icon -->
-        <div class="fadeIn first">
-            <!--<img src="../../assets/images/logo-utj.png" id="icon" alt="logo Icon" /> -->
-            <h1>Registro Alumno</h1>
-        </div>
+    <img src="../../assets/images/logo-utj.png" alt="">
+    <h4>
+        <strong>Registro de Alumno</strong>
+      </h4>
+    <mdb-card class="m-3">
+        <!-- Card content -->
+      <mdb-card-body cascade="true" class="text-center">
 
-        <!-- Login Form -->
-        <form (ngSubmit)="guardar(formulario, content)" #formulario="ngForm">
-            <input
-                type="text"
-                [(ngModel)]="alumno.matricula"
-                class="fadeIn second"
-                required
-                name="matricula"
-                placeholder="Codigo"
-            />
-            <input
-                type="text"
-                [(ngModel)]="alumno.nombres"
-                required
-                class="fadeIn second"
-                name="nombres"
-                placeholder="Nombre(s)"
-            />
-            <input
-                type="text"
-                required
-                class="fadeIn second"
-                [(ngModel)]="alumno.apellidoPaterno"
-                name="apellidoPaterno"
-                placeholder="Apellido paterno"
-            />
-            <input
-                type="text"
-                [(ngModel)]="alumno.apellidoMaterno"
-                required
-                class="fadeIn second"
-                name="apellidoMaterno"
-                placeholder="Apellido materno"
-            />
-            <input
-                type="email"
-                [(ngModel)]="alumno.correo"
-                required
-                class="fadeIn second"
-                name="login"
-                placeholder="correo"
-            />
-            <input
-                type="text"
-                [(ngModel)]="alumno.password"
-                class="fadeIn third"
-                name="password"
-                placeholder="Contraseña"
-            />
+          <!--Title-->
+          <mdb-card-title>
 
-            <input type="submit" class="fadeIn fourth" value="Registrar" />
+          </mdb-card-title>
+
+
+        <form #formulario ="ngForm" (ngSubmit)="guardar(formulario)">
+          <aw-wizard>
+            <aw-wizard-step stepTitle="Datos basicos" awOptionalStep>
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="md-form">
+                            <input type="text"
+                            [(ngModel)]="alumno.matricula"
+                            class="fadeIn second"
+                            required
+                            name="matricula"
+                            class="form-control" mdbInput>
+                            <label for="form3">Codigo</label>
+                          </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="md-form">
+                            <input type="text"
+                            [(ngModel)]="alumno.nombres"
+                            class="fadeIn second"
+                            required
+                            name="nombres"
+                            class="form-control" mdbInput>
+                            <label for="form3">Nombre(s)</label>
+                          </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="md-form">
+                            <input type="text"
+                            [(ngModel)]="alumno.apellidoPaterno"
+                            class="fadeIn second"
+                            required
+                            name="apellidoPaterno"
+                            class="form-control" mdbInput>
+                            <label for="form3">Apellido Paterno</label>
+                          </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="md-form">
+                            <input type="text"
+                            [(ngModel)]="alumno.apellidoMaterno"
+                            class="fadeIn second"
+                            name="apellidoMaterno"
+                            class="form-control" mdbInput>
+                            <label for="form3">Apellido Materno</label>
+                          </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="md-form">
+                            <input type="text"
+                            [(ngModel)]="alumno.correo"
+                            class="fadeIn second"
+                            required
+                            name="correo"
+                            class="form-control" mdbInput>
+                            <label for="form3">E-mail</label>
+                          </div>
+                    </div>
+                </div>
+
+                Formulario 1
+                <button type="button" mdbBtn color="elegant" awNextStep>Siguiente</button>
+
+            </aw-wizard-step>
+            <aw-wizard-step stepTitle="Finaliza registro" >
+                <div class="form-row">
+                    <div class="form-group col-md-6 ">
+                        <label for="periodo">Periodo</label>
+                        <select class="form-control"
+                                 name="periodo"
+                                 id="periodo"
+                                 [(ngModel)]="alumno.periodo"
+                           >
+                            <option default >Seleccione una opción...</option>
+                            <option value="Enero-Abril">Enero - Abril</option>
+                            <option value="Mayo-Agosto">Mayo - Agosto</option>
+                            <option value="Septiembre-Diciembre">Septiembre - Diciembre</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <label for="nivel">Turno</label>
+                        <select class="form-control"
+                                name="turno"
+                                 id="turno"
+                                [(ngModel)]="alumno.turno"
+                           >
+
+                            <option default selected>Seleccione una opción...</option>
+                            <option value="M">Matutino</option>
+                            <option value="v">Vespertino</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="md-form col-md-6">
+                        <label>Teléfono</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            required
+                            [(ngModel)]="alumno.telefono"
+                            name="telefono"
+                            mdbInput
+                        />
+                    </div>
+                    <div class="form-group col-md-6 ">
+                        <label for="nivel">Carrera</label>
+                        <select class="form-control"
+                                name="carrera"
+                                 id="carrera"
+                                [(ngModel)]="alumno.carrera"
+                           >
+
+                            <option default selected>Seleccione una opción...</option>
+                            <option value="TSU-TIC">Técnico Superior Universitario-TIC</option>
+                            <option value="ING-TIC">Ingeniería - TIC</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4 ">
+                        <label for="nivel">Género</label>
+                        <select class="form-control"
+                                name="genero"
+                                 id="genero"
+                                [(ngModel)]="alumno.genero"
+                           >
+
+                            <option default selected>Seleccione una opción...</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="md-form col-md-4">
+                        <label>Edad</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            required
+                            [(ngModel)]="alumno.edad"
+                            name="edad"
+                            mdbInput
+                        />
+                    </div>
+                    <div class="form-group col-md-4 ">
+                        <label for="nivel">Reingreso</label>
+                        <select class="form-control"
+                                name="reingreso"
+                                 id="reingreso"
+                                [(ngModel)]="alumno.reingreso"
+                           >
+
+                            <option default selected>Seleccione una opción...</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                Formnulario 2
+                <button type="button"   mdbBtn color="elegant" awPreviousStep>Regresar</button>
+                <button type="button" [disabled]="!formulario.valid" mdbBtn color="elegant" ><mdb-icon fas icon="save" class="ml-1"></mdb-icon>  Aceptar</button>
+                <!--<button type="button"  awNextStep>Go to next step</button>-->
+            </aw-wizard-step>
+
+        </aw-wizard>
         </form>
+        </mdb-card-body>
+        </mdb-card>
+        <a class="underlineHover" [routerLink]="['/login']" mdbBtn>Regresar</a>
+  </div>
 
-        <!-- Remind Passowrd -->
-        <div id="formFooter">
-            <a class="underlineHover" [routerLink]="['/login']">Regresar</a>
-        </div>
-    </div>
-</div>
+

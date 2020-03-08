@@ -1,13 +1,20 @@
 export class EmpresasModel {
-    id_alumno: Number = 0;
+    id_empresa: Number = 0;
     nombre: string;
-    numseguro: string;
-    nivel: {type: string, enum: ['TSU', 'ING'], default: 'TSU'};
-    carrera: {type: string, enum: ['TIC', 'ITIC'], default: 'TIC'};
-    sede = '';
-    id_asesorin: Number = 0;
-    id_asesoraca: Number = 0;
-    id_proyecto: Number = 0;
-    fecha_alta: Date;
-    fecha_update: Date ;
+    rfc: string;
+    giro: string;
+    tipo: {type: string, enum: ['Privado', 'Gubernamental', 'Patronato', 'Fundacion', 'Sindicato',
+    'Asociacion', 'Religiosa'], default: 'Privado'};
+    areaAsignada: {type: string, enum: ['Desarrollo', 'Soporte', 'Infraestructura'], default: 'Desarrollo'};
+    presencia: {type: string, enum: ['Local', 'Nacional', 'Internacional'], default: 'Local'};
+    calle: string;
+    noInterior: string;
+    noExterior: string;
+    colonia: string;
+    cp: string;
+    municipio: string;
+    numEmpleados: number;
+    calificacion: number;
+    descripcion: string;
+    estatus: string;
 }

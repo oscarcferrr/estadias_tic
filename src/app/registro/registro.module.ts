@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RegistroRoutingModule } from './registro-routing.module';
 import { RegistroComponent } from './registro.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {ArchwizardModule } from 'angular-archwizard';
 
 
 @NgModule({
@@ -10,7 +12,9 @@ import { RegistroComponent } from './registro.component';
   imports: [
     CommonModule,
     RegistroRoutingModule,
-    FormsModule
+    FormsModule,
+    MDBBootstrapModule.forRoot(),
+    ArchwizardModule
   ]
 })
 export class RegistroModule { }

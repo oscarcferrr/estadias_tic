@@ -9,9 +9,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.post('http://localhost:3000/tokens', {
-      username: username,
-      password: password,
-    });
+
+    return this.http.get(`http://localhost:3700/user/:usuario${username}/:contrasena${password}`, );
   }
 }

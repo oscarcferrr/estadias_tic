@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlumnosModel } from './alumnos.model';
@@ -14,7 +14,8 @@ import { Observable } from 'rxjs';
     templateUrl: './alumnos.component.html',
     styleUrls: ['./alumnos.component.scss']
 })
-export class AlumnosComponent implements OnInit {
+export class AlumnosComponent implements OnInit  {
+
 
     alumno = new AlumnosModel();
     alumnos: AlumnosModel[] = [];
@@ -22,7 +23,8 @@ export class AlumnosComponent implements OnInit {
     cargando = false;
     dtOptions: any = {};
     constructor(private alumnosService: AlumnosService,
-        private modal: NgbModal) { }
+        private modal: NgbModal,
+        private cdRef: ChangeDetectorRef) { }
 
     ngOnInit() {
         this.dtOptions = {
@@ -38,6 +40,7 @@ export class AlumnosComponent implements OnInit {
         };
         this.getAlumnos();
     }
+
 
     open(content) {
         // console.log(this.consultorio);
