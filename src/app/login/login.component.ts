@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
     onLoggedin(data) {
         localStorage.setItem('isLoggedin', 'true');
         console.log(data);
-
-        this.loginService.login(data.email.value, data.pwd.value).subscribe(
+        this.navigateOk();
+       /** this.loginService.login(data.email.value, data.pwd.value).subscribe(
             res => {
 
              this.navigateOk();
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
             console.error(error);
           },
         //   () => this.navigateOk()
-          );
+          );**/
     }
     navigateOk() {
        /* this.loginService.getUsr(localStorage.getItem('user')).subscribe(
