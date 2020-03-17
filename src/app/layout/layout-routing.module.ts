@@ -17,13 +17,16 @@ const routes: Routes = [
             { path: 'bs-element', loadChildren: () => import('./bs-element/bs-element.module').then(m => m.BsElementModule) },
             { path: 'grid', loadChildren: () => import('./grid/grid.module').then(m => m.GridModule) },
             { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
-            { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
             {path: 'alumnos', loadChildren: () => import('./alumnos/alumnos.module').then(m => m.AlumnosModule),
             canActivate: [AuthGuard]},
             {path: 'empresas', loadChildren: () => import('./empresas/empresas.module').then(m => m.EmpresasModule),
             canActivate: [AuthGuard]},
             {path: 'proyectos', loadChildren: () => import('./proyectos/proyectos.module').then(m => m.ProyectosModule),
-            canActivate: [AuthGuard]}
+            canActivate: [AuthGuard]},
+            {path: 'asesorAcademico', loadChildren: () => import('./asesor-academico/asesor-academico.module')
+            .then(m => m.AsesorAcademicoModule), canActivate: [AuthGuard]},
+            {path: 'usuarios', loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule),
+             canActivate: [AuthGuard]}
         ]
     }
 ];

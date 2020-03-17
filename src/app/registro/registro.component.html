@@ -22,29 +22,35 @@
                     <div class="col-6">
 
                         <div class="md-form">
-                            <input type="text"
+                            <input type="number"
                             [(ngModel)]="alumno.matricula"
                             class="fadeIn second"
                             required
                             name="matricula"
-                            class="form-control" mdbInput>
+                            class="form-control" mdbInput
+                            [disabled]="!bandera">
                             <label for="form3">Codigo</label>
                           </div>
                     </div>
+                    <div class="col-2">
+                        <button type="button"size="sm" color="elegant" (click)="validar()" mdbBtn>Validar codigo</button>
+                    </div>
 
-                    <div class="col-6">
+
+                </div>
+                <div class="row" *ngIf="!bandera" >
+                    <div class="col-6"  >
                         <div class="md-form">
                             <input type="text"
                             [(ngModel)]="alumno.nombres"
                             class="fadeIn second"
                             required
+
                             name="nombres"
                             class="form-control" mdbInput>
                             <label for="form3">Nombre(s)</label>
                           </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-6">
 
                         <div class="md-form">
@@ -53,24 +59,27 @@
                             class="fadeIn second"
                             required
                             name="apellidoPaterno"
+                            [disabled]="bandera"
                             class="form-control" mdbInput>
                             <label for="form3">Apellido Paterno</label>
                           </div>
                     </div>
 
+
+                </div>
+
+                <div class="row " *ngIf="!bandera">
                     <div class="col-6">
                         <div class="md-form">
                             <input type="text"
                             [(ngModel)]="alumno.apellidoMaterno"
                             class="fadeIn second"
                             name="apellidoMaterno"
+                            [disabled]="bandera"
                             class="form-control" mdbInput>
                             <label for="form3">Apellido Materno</label>
                           </div>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="col-6">
 
                         <div class="md-form">
@@ -79,6 +88,7 @@
                             class="fadeIn second"
                             required
                             name="correo"
+                            [disabled]="bandera"
                             class="form-control" mdbInput>
                             <label for="form3">E-mail</label>
                           </div>
@@ -86,7 +96,7 @@
                 </div>
 
                 Formulario 1
-                <button type="button" mdbBtn color="elegant" awNextStep>Siguiente</button>
+                <button type="button" mdbBtn color="elegant"  awNextStep>Siguiente</button>
 
             </aw-wizard-step>
             <aw-wizard-step stepTitle="Finaliza registro" >
@@ -187,7 +197,7 @@
 
                 Formnulario 2
                 <button type="button"   mdbBtn color="elegant" awPreviousStep>Regresar</button>
-                <button type="button" [disabled]="!formulario.valid" mdbBtn color="elegant" ><mdb-icon fas icon="save" class="ml-1"></mdb-icon>  Aceptar</button>
+                <button type="submit" [disabled]="!formulario.valid" mdbBtn color="elegant" ><mdb-icon fas icon="save" class="ml-1"></mdb-icon>  Aceptar</button>
                 <!--<button type="button"  awNextStep>Go to next step</button>-->
             </aw-wizard-step>
 

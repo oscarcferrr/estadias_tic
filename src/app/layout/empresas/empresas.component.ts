@@ -22,6 +22,7 @@ export class EmpresasComponent implements OnInit {
              private empresasService: EmpresasService) { }
 
   ngOnInit() {
+
     this.dtOptions = {
         dom: 'Bfrtip',
         buttons: [
@@ -33,6 +34,7 @@ export class EmpresasComponent implements OnInit {
         pagingType: 'full_numbers',
         pageLength: 10
       };
+      this.getEmpresas();
   }
 
   open(content) {
@@ -44,7 +46,7 @@ export class EmpresasComponent implements OnInit {
     });
    }
 
-   getAlumnos() {
+   getEmpresas() {
     this.empresasService.getEmpresas()
         .subscribe((resp: any) => {
             this.empresas = resp;
@@ -59,6 +61,7 @@ export class EmpresasComponent implements OnInit {
     }
 
     actualizar(emp: EmpresasModel, content) {
+
             this.empresa = emp;
             this.open(content);
     }

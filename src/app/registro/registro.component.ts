@@ -4,6 +4,9 @@ import {AlumnosModel} from '../layout/alumnos/alumnos.model';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 import { AlumnosService } from '../layout/alumnos/alumnos.service';
+import { RegistroService } from './registro.service';
+
+
 
 
 @Component({
@@ -14,7 +17,9 @@ import { AlumnosService } from '../layout/alumnos/alumnos.service';
 export class RegistroComponent implements OnInit {
 
   alumno = new AlumnosModel();
-  constructor(private alumnosService: AlumnosService) { }
+  bandera = true;
+  constructor(private alumnosService: AlumnosService,
+              private registroService: RegistroService) { }
 
   ngOnInit() {
   }
@@ -40,7 +45,7 @@ export class RegistroComponent implements OnInit {
         Swal.fire({
             title: this.alumno.nombres + ' ' + this.alumno.apellidoPaterno
                 + ' ' + this.alumno.apellidoMaterno,
-            text: 'Se actualizo correctamente',
+            text: 'Se Registro correctamente con el codigo' + this.alumno.matricula,
             icon: 'success'
         });
     },
@@ -50,5 +55,29 @@ export class RegistroComponent implements OnInit {
         });
 
 }
+
+validar() {
+
+        this.registroService.validarCodigo(this.alumno.matricula).subscribe(
+            res => {
+                console.log(res);
+                if (res[0].estado === 'Disponible') {
+                    this.bandera = false;
+                } else {
+                    Swal.fire({
+                        title: 'Advertencia',
+                        text: 'El codigo del alumno ya esta registrado.',
+                        icon: 'warning'
+                    });
+                    this.bandera = true;
+                }
+                },
+          error => {
+            console.error(error);
+          },
+        //   () => this.navigateOk()
+          );
+
+    }
 
 }

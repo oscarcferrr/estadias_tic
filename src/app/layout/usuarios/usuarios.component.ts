@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { AsesorAcademicoModel } from './asesor-academico.model';
-import { AsesorAcademicoService } from './asesor-academico.service';
-import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+import { UsuariosModel } from './usuarios.model';
+import { UsuariosService } from './usuarios.service';
+
 
 @Component({
-  selector: 'app-asesor-academico',
-  templateUrl: './asesor-academico.component.html',
-  styleUrls: ['./asesor-academico.component.scss']
+  selector: 'app-usuarios',
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.scss']
 })
-export class AsesorAcademicoComponent implements OnInit {
-    asesor = new AsesorAcademicoModel();
-    asesores: AsesorAcademicoModel[] = [];
+export class UsuariosComponent implements OnInit {
+    usuario = new UsuariosModel();
+    usuarios: UsuariosModel[] = [];
     closeResult: string;
     cargando = false;
     dtOptions: any = {};
-  constructor(private asesorService: AsesorAcademicoService,
+  constructor(private usuarioService: UsuariosService,
     private modal: NgbModal) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class AsesorAcademicoComponent implements OnInit {
         pagingType: 'full_numbers',
         pageLength: 10
       };
-      this.getAsesores();
+      this.getUsuarios();
   }
 
   open(content) {
@@ -44,10 +45,10 @@ export class AsesorAcademicoComponent implements OnInit {
     });
 }
 
-getAsesores() {
-    this.asesorService.getAsesores()
+getUsuarios() {
+    this.usuarioService.getUsuarios()
         .subscribe((resp: any) => {
-            this.asesores = resp;
+            this.usuarios = resp;
             console.log(resp);
             // console.log('consultorios: ', resp);
             this.cargando = false;
@@ -68,20 +69,20 @@ guardar(form: NgForm) {
     });
     Swal.showLoading();
     let peticion: Observable<any>;
-    console.log(this.asesor);
-    if (!this.asesor.id_Asesor) {
-        this.asesor.estatus = 'activo';
-        peticion = this.asesorService.altaAsesor(this.asesor);
+    console.log(this.usuario);
+    if (!this.usuario.id_usuario) {
+        this.usuario.estatus = 'activo';
+        peticion = this.usuarioService.altaUsuario(this.usuario);
         // this.consultorios.push(this.consultorio);
     } else {
         console.log('actualizar');
-        peticion = this.asesorService.actualizaAsesor(this.asesor);
+        peticion = this.usuarioService.actualizaUsuario(this.usuario);
     }
     // console.log(this.consultorio);
     peticion.subscribe(resp => {
         this.ngOnInit();
         Swal.fire({
-            title: this.asesor.nombre,
+            title: this.usuario.usuario,
             text: 'Se actualizo correctamente',
             icon: 'success'
         });
@@ -92,31 +93,31 @@ guardar(form: NgForm) {
         });
 }
 
-actualizar(asesor: AsesorAcademicoModel, content) {
-    this.asesor = asesor;
+actualizar(usu: UsuariosModel, content) {
+    this.usuario = usu;
     this.open(content);
 }
 
 alta(content) {
-    this.asesor = new AsesorAcademicoModel();
+    this.usuario = new UsuariosModel();
     this.open(content);
 }
 
-borrar(proy: AsesorAcademicoModel, i: number) {
+borrar(usu: UsuariosModel, i: number) {
     this.modal.dismissAll();
-    this.asesor = this.asesor;
-    console.log(this.asesor);
+    this.usuario = usu;
+    console.log(this.usuario);
     Swal.fire({
         title: '¿Está seguro?',
-        text: `Está seguro de que desea borrar a ${this.asesor.nombre}`,
+        text: `Está seguro de que desea borrar a ${this.usuario.usuario}`,
         icon: 'question',
         showConfirmButton: true,
         showCancelButton: true
     }).then(resp => {
         if (resp.value) {
-            this.asesorService.borrarAsesor(this.asesor).subscribe((response: any) => {
+            this.usuarioService.borrarUsuario(this.usuario).subscribe((response: any) => {
                 console.log(response);
-                this.asesores.splice(i, 1);
+                this.usuarios.splice(i, 1);
             },
                 (error) => {
                     console.log(error.message);

@@ -1,12 +1,12 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
-        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+    <!--   <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-chart-line"></i>&nbsp;
             <span>{{ 'Dashboard' | translate }}</span>
-        </a>
+        </a> -->
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
-            <span>{{ 'Charts' | translate }}</span>
+            <span>{{ 'Dashboard' | translate }}</span>
         </a>
         <a [routerLink]="['/alumnos']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-user-circle"></i>&nbsp;
@@ -20,13 +20,17 @@
             <i class="fa fa-fw fa-tasks"></i>&nbsp;
             <span>{{ 'Projects' | translate }}</span>
         </a>
-        <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/asesorAcademico']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-users"></i>&nbsp;
             <span>{{ 'Asesores academicos' | translate }}</span>
         </a>
         <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-vcard"></i>&nbsp;
             <span>{{ 'Asesores Industriales' | translate }}</span>
+        </a>
+        <a [routerLink]="['/usuarios']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-user-friends"></i>&nbsp;
+            <span>{{ 'Users' | translate }}</span>
         </a>
      <!--    <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
@@ -56,10 +60,7 @@
                 </ul>
             </li>
         </div> -->
-        <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-user-friends"></i>&nbsp;
-            <span>{{ 'Users' | translate }}</span>
-        </a>
+
 
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">

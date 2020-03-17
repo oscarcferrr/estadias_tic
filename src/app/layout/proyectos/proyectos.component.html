@@ -1,7 +1,7 @@
-<div [@routerTransition]>
+<div>
     <div class="row m-4">
         <div class="col d-flex justify-content-end">
-            <button (click)="open(content)" class="btn btn-dark">
+            <button (click)="alta(content)" class="btn btn-dark">
                 <i class="fa fa-plus"></i>
                 Agregar Proyecto
             </button>
@@ -96,7 +96,6 @@
                     <input
                         type="text"
                         class="form-control"
-                        required
                         [(ngModel)]="proyecto.calificacion"
                         name="calificacion"
                         mdbInput

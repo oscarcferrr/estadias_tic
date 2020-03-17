@@ -1,4 +1,4 @@
-<div [@routerTransition]>
+<div >
     <div class="card mb-3">
         <div class="card-header text-white" style="background-color: black;">
             Empresas
@@ -36,18 +36,20 @@
                             <td>{{ e.tipo }}</td>
                             <td>{{ e.calificacion }}</td>
                             <td>
-                                <button
-                                    (click)="actualizar(e, content)"
-                                    class="btn btn-info mr-1"
-                                >
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                                <button
-                                    (click)="borrar(e, i)"
-                                    class="btn btn-danger"
-                                >
+                                <button (click)="actualizar(e, content)"
+                                        type="button"
+                                        color="elegant" mdbWavesEffect
+                                        size="sm"
+                                         mdbBtn>
+                                         <mdb-icon fas icon="edit"></mdb-icon>
+                                  </button>
+                                  <button
+                                       (click)="borrar(e, i)"
+                                       size="sm"
+                                        color="danger"
+                                        mdbBtn>
                                     <i class="fa fa-trash"></i>
-                                </button>
+                                  </button>
                             </td>
                         </tr>
                     </tbody>
@@ -74,7 +76,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <form #formulario="ngForm">
+    <form #formulario="ngForm"  (ngSubmit)="guardar(formulario, content)">
         <div class="modal-body">
             <aw-wizard navBarLayout="large-filled">
                 <aw-wizard-step
@@ -135,7 +137,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6 ">
-                            <label for="carrera">Tipo</label>
+                            <label for="tipo">Tipo</label>
                             <select
                                 class="form-control"
                                 name="tipo"
@@ -200,6 +202,7 @@
                                 class="form-control"
                                 disabled
                                 name="calificacion"
+                                [(ngModel)]="empresa.calificacion"
                                 placeholder="Calificación"
                             />
                         </div>
@@ -212,6 +215,8 @@
                                 class="md-textarea form-control"
                                 required
                                 name="descripcion"
+                                [(ngModel)]="empresa.descripcion"
+
                                 mdbInput
                             ></textarea>
                         </div>
@@ -234,7 +239,7 @@
                             type="text"
                             class="form-control"
                             required
-                            name="rfc"
+                            name="calle"
                             [(ngModel)]="empresa.calle"
                             mdbInput
                         />
@@ -246,7 +251,7 @@
                             type="text"
                             class="form-control"
                             required
-                            name="giro"
+                            name="noExterior"
                             [(ngModel)]="empresa.noExterior"
                             mdbInput
                         />
@@ -258,7 +263,7 @@
                             type="text"
                             class="form-control"
                             required
-                            name="giro"
+                            name="noInterior"
                             [(ngModel)]="empresa.noInterior"
                             mdbInput
                         />
@@ -297,7 +302,7 @@
 
                         <label for="nivel">Codigo Postal</label>
                         <input
-                            type="text"
+                            type="number"
                             class="form-control"
                             required
                             name="cp"

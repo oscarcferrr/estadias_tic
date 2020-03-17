@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { LoginService } from './login.service';
+import { UserModel } from './user.model';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-login',
@@ -10,6 +12,7 @@ import { LoginService } from './login.service';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
+    user = new UserModel();
     constructor(
         public router: Router,
         private loginService: LoginService
@@ -18,19 +21,31 @@ export class LoginComponent implements OnInit {
     ngOnInit() {}
 
     onLoggedin(data) {
-        localStorage.setItem('isLoggedin', 'true');
-        console.log(data);
-        this.navigateOk();
-       /** this.loginService.login(data.email.value, data.pwd.value).subscribe(
+        localStorage.setItem('user', data.email.value);
+        this.user.contrasena = data.pwd.value;
+        this.user.usuario =  data.email.value;
+       this.loginService.login(this.user).subscribe(
             res => {
-
-             this.navigateOk();
-          },
+                console.log(res[0]);
+                try {
+                    if (res[0].estatus === 'activo') {
+                        this.navigateOk();
+                        localStorage.setItem('isLoggedin', 'true');
+                    }
+                } catch (error) {
+                    Swal.fire({
+                        title: 'Advertencia',
+                        text: 'Usuario o contraseña icorrecta',
+                        icon: 'warning'
+                    });
+                }
+                         },
           error => {
             console.error(error);
+            this.navigateErr();
           },
         //   () => this.navigateOk()
-          );**/
+          );
     }
     navigateOk() {
        /* this.loginService.getUsr(localStorage.getItem('user')).subscribe(
@@ -44,7 +59,7 @@ export class LoginComponent implements OnInit {
     }
 
     navigateErr() {
-        // localStorage.setItem('isLoggedin', 'false');
-       // this.router.navigateByUrl('/access-denied');
+        localStorage.setItem('isLoggedin', 'false');
+        this.router.navigateByUrl('/access-denied');
         }
 }
