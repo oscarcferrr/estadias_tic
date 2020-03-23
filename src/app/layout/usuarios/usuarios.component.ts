@@ -70,7 +70,7 @@ guardar(form: NgForm) {
     Swal.showLoading();
     let peticion: Observable<any>;
     console.log(this.usuario);
-    if (!this.usuario.id_usuario) {
+    if (!this.usuario.id) {
         this.usuario.estatus = 'activo';
         peticion = this.usuarioService.altaUsuario(this.usuario);
         // this.consultorios.push(this.consultorio);

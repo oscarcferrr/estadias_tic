@@ -25,9 +25,9 @@ export class UsuariosService {
         return this.http.post(`${this.url}/save-user`, usuario);
     }
     actualizaUsuario(usuario: UsuariosModel) {
-        return this.http.put(`${this.url}/update-user/${usuario.id_usuario}`, usuario);
+        return this.http.put(`${this.url}/update-user/${usuario.id}`, usuario);
     }
     borrarUsuario(usuario: UsuariosModel) {
-        return this.http.delete(`${this.url}/delete-user/${usuario.id_usuario}`);
+        return this.http.delete(`${this.url}/delete-user/${usuario.id}`);
     }
 }
