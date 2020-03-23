@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {AlumnosModel} from '../layout/alumnos/alumnos.model';
+import { AlumnosModel } from '../layout/alumnos/alumnos.model';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 import { AlumnosService } from '../layout/alumnos/alumnos.service';
@@ -60,8 +60,8 @@ validar() {
 
         this.registroService.validarCodigo(this.alumno.matricula).subscribe(
             res => {
-                console.log(res);
-                if (res[0].estado === 'Disponible') {
+            const an: any = res;
+                if (an.Estado === 'Disponible') {
                     this.bandera = false;
                 } else {
                     Swal.fire({

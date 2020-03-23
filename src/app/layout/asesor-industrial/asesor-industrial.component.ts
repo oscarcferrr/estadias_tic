@@ -20,7 +20,6 @@ export class AsesorIndustrialComponent implements OnInit {
     asesores: AsesorIndustrialModel[] = [];
     empresas: EmpresasModel[] = [];
     keyword = 'nombre';
-    historyHeading = 'Seleccionado Recientemente';
     closeResult: string;
     cargando = false;
     dtOptions: any = {};

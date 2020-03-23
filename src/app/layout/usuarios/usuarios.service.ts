@@ -28,8 +28,6 @@ export class UsuariosService {
         return this.http.put(`${this.url}/update-user/${usuario.id_usuario}`, usuario);
     }
     borrarUsuario(usuario: UsuariosModel) {
-        const params = new HttpParams()
-            .set('id', String(usuario.id_usuario));
-        return this.http.delete(`${this.url}/delete-user/:id"`, { headers: this.headers, params: params });
+        return this.http.delete(`${this.url}/delete-user/${usuario.id_usuario}`);
     }
 }

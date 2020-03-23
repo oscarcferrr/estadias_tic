@@ -5,6 +5,16 @@ import { AlumnosModel } from './alumnos.model';
 import { AlumnosService } from './alumnos.service';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
+// DataTable
+import { Subject } from 'rxjs';
+
+import { AsesorIndustrialService } from '../asesor-industrial/asesor-industrial.service';
+import { AsesorIndustrialModel } from '../asesor-industrial/asesor-industrial.model';
+import { AsesorAcademicoService } from '../asesor-academico/asesor-academico.service';
+import { AsesorAcademicoModel } from '../asesor-academico/asesor-academico.model';
+import { ProyectosService } from '../proyectos/proyectos.service';
+import { ProyectosModel } from '../proyectos/proyecto.model';
+
 
 
 
@@ -16,29 +26,36 @@ import { Observable } from 'rxjs';
 })
 export class AlumnosComponent implements OnInit  {
 
-
+    asesoresA: AsesorAcademicoModel[] = [];
+    keyword = 'nombre';
+    asesoresI: AsesorIndustrialModel[] = [];
+    proyectos: ProyectosModel[] = [];
     alumno = new AlumnosModel();
     alumnos: AlumnosModel[] = [];
     closeResult: string;
     cargando = false;
     dtOptions: any = {};
+
     constructor(private alumnosService: AlumnosService,
-        private modal: NgbModal,
-        private cdRef: ChangeDetectorRef) { }
+        private asesorAcdService: AsesorAcademicoService,
+        private asesorIndSerrvice: AsesorIndustrialService,
+        private proyectoService: ProyectosService,
+        private modal: NgbModal) { }
 
     ngOnInit() {
         this.dtOptions = {
             dom: 'Bfrtip',
             buttons: [
-                'pdfHtml5',
-                'print',
-                'excel',
-                'pageLength'
+               'pageLength'
             ],
             pagingType: 'full_numbers',
             pageLength: 10
-        };
+          };
         this.getAlumnos();
+        this.getAsesores();
+        this.getProyectos();
+        this.getAsesoresIn();
+
     }
 
 
@@ -134,6 +151,58 @@ export class AlumnosComponent implements OnInit  {
             }
         });
 
+    }
+    getAsesores() {
+        this.asesorAcdService.getAsesores()
+            .subscribe((resp: any) => {
+                this.asesoresA = resp;
+                console.log(resp);
+                // console.log('consultorios: ', resp);
+                this.cargando = false;
+            },
+                (error) => {
+                    console.log(error.message);
+                    if (error.status === 403) { /*this.g.onLoggedout();*/ }
+                });
+    }
+
+    selectEventAcademico(item) {
+        // console.log(item);
+        this.alumno.id_asesoraca = item.id_Asesor ;
+    }
+    getProyectos() {
+        this.proyectoService.getProyectos()
+            .subscribe((resp: any) => {
+                this.proyectos = resp;
+                console.log(resp);
+                // console.log('consultorios: ', resp);
+                this.cargando = false;
+            },
+                (error) => {
+                    console.log(error.message);
+                    if (error.status === 403) { /*this.g.onLoggedout();*/ }
+                });
+    }
+    selectEventProyecto(item) {
+        // console.log(item);
+        this.alumno.id_proyecto = item.id_proyecto ;
+    }
+
+    getAsesoresIn() {
+        this.asesorIndSerrvice.getAsesores()
+            .subscribe((resp: any) => {
+                this.asesoresI = resp;
+                // console.log(resp);
+                this.cargando = false;
+            },
+                (error) => {
+                    console.log(error.message);
+                    if (error.status === 403) { /*this.g.onLoggedout();*/ }
+                });
+    }
+    selectEventIndustrial(item) {
+        // console.log(item);
+        this.alumno.id_asesorin = item.id_asesorin ;
     }
 
 }

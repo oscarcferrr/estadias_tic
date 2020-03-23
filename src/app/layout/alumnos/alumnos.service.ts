@@ -28,9 +28,7 @@ export class AlumnosService {
         return this.http.put(`${this.url}/update-student/${alumno.id_alumno}`, alumno);
     }
     borrarAlumno(alumno: AlumnosModel) {
-        const params = new HttpParams()
-            .set('id', String(alumno.id_alumno));
-        return this.http.delete(`${this.url}/delete-student/:id`, { headers: this.headers, params: params });
+        return this.http.delete(`${this.url}/delete-student/${alumno.id_alumno}`);
     }
 
 

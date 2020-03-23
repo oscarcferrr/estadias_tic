@@ -24,7 +24,7 @@
           <th scope="col">Acciones</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="alumnos?.length != 0">
         <tr  *ngFor="let a of alumnos; let i=index ">
             <td>{{ i+1 }}</td>
             <td>{{ a.nombres }}</td>
@@ -48,7 +48,18 @@
                   </button>
             </td>
         </tr>
+
       </tbody>
+      <tbody *ngIf="alumnos?.length == 0">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="3" class="no-data-available">No hay datos</td>
+            <td></td>
+        </tr>
+      <tbody>
     </table>
 </div>
 
@@ -70,6 +81,11 @@
         </div>
 
         <div class="modal-body">
+            <aw-wizard navBarLayout="large-filled">
+                <aw-wizard-step
+                    [navigationSymbol]="{ symbol: '1' }"
+                    stepTitle="Informacion personal"
+                >
             <div class="form-row">
                 <div class="md-form col-md-12">
                     <mdb-icon fas icon="id-card" class="prefix grey-text"></mdb-icon>
@@ -164,6 +180,12 @@
                     <label>Correo</label>
                 </div>
             </div>
+            <button type="button" class="btn btn-dark pull-right" mdbBtn awNextStep> Siguiente <mdb-icon fas icon="arrow-circle-right" class="prefix grey-text"></mdb-icon></button>
+        </aw-wizard-step>
+        <aw-wizard-step
+                    [navigationSymbol]="{ symbol: '2' }"
+                    stepTitle="Domicilio"
+                >
             <div class="form-row">
                 <div class="form-group col-md-6 ">
                     <label for="nivel">Carrera</label>
@@ -232,7 +254,82 @@
                     </select>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="">Proyecto</label>
+                    <div class="ng-autocomplete">
+                        <ng-autocomplete
+                        [data]="proyectos"
+                        [searchKeyword]="keyword"
+                        (selected)='selectEventAcademico($event)'
+                        placeHolder="Escriba el nombre del proyecto"
+                        [itemTemplate]="itemTemplateP"
+                        [notFoundTemplate]="notFoundTemplateP">
 
+
+                        </ng-autocomplete>
+                        <ng-template #itemTemplateP let-item>
+                            <a [innerHTML]="item.nombre"></a>
+                            </ng-template>
+
+                            <ng-template #notFoundTemplateP let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <label for="">Asesor Academico</label>
+                    <div class="ng-autocomplete">
+                        <ng-autocomplete
+                        [data]="asesoresA"
+                        [searchKeyword]="keyword"
+                        (selected)='selectEventAcademico($event)'
+                        placeHolder="Escriba el nombre del asesor academico"
+                        [itemTemplate]="itemTemplate"
+                        historyIdentifier="asesoresA"
+                        [notFoundTemplate]="notFoundTemplate">>
+
+
+                        </ng-autocomplete>
+                        <ng-template #itemTemplate let-item>
+                            <a [innerHTML]="item.nombre"></a>
+                            </ng-template>
+
+                            <ng-template #notFoundTemplate let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-row mt-3">
+                <div class="col-md-12">
+                    <label for="">Asesor Industrial</label>
+                    <div class="ng-autocomplete">
+                        <ng-autocomplete
+                        [data]="asesoresI"
+                        [searchKeyword]="keyword"
+                        (selected)='selectEventIndustrial($event)'
+                        placeHolder="Escriba el nombre del asesor Industrial"
+                        [itemTemplate]="itemTemplateI"
+                        [notFoundTemplate]="notFoundTemplateI">
+
+
+                        </ng-autocomplete>
+                        <ng-template #itemTemplateI let-item>
+                            <a [innerHTML]="item.nombre"></a>
+                            </ng-template>
+
+                            <ng-template #notFoundTemplateI let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class=" mt-5 btn btn-dark pull-left" mdbBtn awPreviousStep><mdb-icon fas icon="arrow-circle-left" class="prefix grey-text"></mdb-icon> Regresar</button>
+        </aw-wizard-step>
+    </aw-wizard>
 
         </div>
         <div class="modal-footer align-content-center">

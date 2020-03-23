@@ -69,7 +69,7 @@ guardar(form: NgForm) {
     Swal.showLoading();
     let peticion: Observable<any>;
     console.log(this.asesor);
-    if (!this.asesor.id_Asesor) {
+    if (!this.asesor.id_asesoraca) {
         this.asesor.estatus = 'activo';
         peticion = this.asesorService.altaAsesor(this.asesor);
         // this.consultorios.push(this.consultorio);
@@ -102,9 +102,9 @@ alta(content) {
     this.open(content);
 }
 
-borrar(proy: AsesorAcademicoModel, i: number) {
+borrar(asesor: AsesorAcademicoModel, i: number) {
     this.modal.dismissAll();
-    this.asesor = this.asesor;
+    this.asesor = asesor;
     console.log(this.asesor);
     Swal.fire({
         title: '¿Está seguro?',

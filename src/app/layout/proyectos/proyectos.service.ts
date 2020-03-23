@@ -29,9 +29,7 @@ export class ProyectosService {
         return this.http.put(`${this.url}/update-project/${proyecto.id_proyecto}`, proyecto);
     }
     borrarProyecto(proyecto: ProyectosModel) {
-        const params = new HttpParams()
-            .set('id', String(proyecto.id_proyecto));
-        return this.http.delete(`${this.url}/delete-project/:id`, { headers: this.headers, params: params });
+        return this.http.delete(`${this.url}/delete-project/${proyecto.id_proyecto}`);
     }
 
 }

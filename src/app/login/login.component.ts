@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             }
         );   */
         localStorage.setItem('isLoggedin', 'true');
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/charts');
     }
 
     navigateErr() {

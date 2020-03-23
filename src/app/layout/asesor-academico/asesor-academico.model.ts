@@ -1,6 +1,6 @@
 
 export class AsesorAcademicoModel {
-    id_Asesor: Number = 0;
+    id_asesoraca: Number = 0;
     nombre: string;
     correo: string;
     telefono: number;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { EmpresasModel } from './empresas.model';
@@ -19,7 +19,8 @@ export class EmpresasComponent implements OnInit {
   cargando = false;
   dtOptions: any = {};
   constructor(private modal: NgbModal,
-             private empresasService: EmpresasService) { }
+             private empresasService: EmpresasService,
+             private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
 

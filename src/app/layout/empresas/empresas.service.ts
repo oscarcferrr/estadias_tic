@@ -30,6 +30,6 @@ export class EmpresasService {
    borrarEmpresa(empresa: EmpresasModel) {
     const params = new HttpParams()
         .set('id', String(empresa.id_empresa));
-    return this.http.delete(`${this.url}/delete-enterprise/:id`, { headers: this.headers, params: params });
+    return this.http.delete(`${this.url}/delete-enterprise/${empresa.id_empresa}`);
 }
 }

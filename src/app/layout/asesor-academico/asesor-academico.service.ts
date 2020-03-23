@@ -21,14 +21,12 @@ export class AsesorAcademicoService {
 }
 
 altaAsesor(asesor: AsesorAcademicoModel) {
-    return this.http.post(`${this.url}//save-asesorAca`, asesor);
+    return this.http.post(`${this.url}/save-asesorAca`, asesor);
 }
 actualizaAsesor(asesor: AsesorAcademicoModel) {
-    return this.http.put(`${this.url}/update-asesorAca/${asesor.id_Asesor}`, asesor);
+    return this.http.put(`${this.url}/update-asesorAca/${asesor.id_asesoraca}`, asesor);
 }
 borrarAsesor(asesor: AsesorAcademicoModel) {
-    const params = new HttpParams()
-        .set('id', String(asesor.id_Asesor));
-    return this.http.delete(`${this.url}/delete-asesorAca/:id`, { headers: this.headers, params: params });
+    return this.http.delete(`${this.url}/delete-asesorAca/${asesor.id_asesoraca}` );
 }
 }
