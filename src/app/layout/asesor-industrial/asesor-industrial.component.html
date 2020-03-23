@@ -1,0 +1,161 @@
+<div>
+    <div class="row m-4">
+        <div class="col d-flex justify-content-end">
+            <button (click)="alta(content)" class="btn btn-dark">
+                <i class="fa fa-plus"></i>
+                Agregar Asesor
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <table datatable [dtOptions]="dtOptions"
+        class="mt-3 animated fadeIn faster">
+        <thead >
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Telefono</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Estatus</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+       <tr  *ngFor="let a of asesores; let i=index ">
+            <td>{{ i+1 }}</td>
+            <td>{{ a.nombre }}</td>
+            <td>{{ a.telefono }}</td>
+            <td>{{ a.correo }}</td>
+            <td>{{ a.estatus}}</td>
+            <td>
+                <button (click)="actualizar(a, content)"
+                        type="button"
+                        color="elegant" mdbWavesEffect
+                        size="sm"
+                         mdbBtn>
+                         <mdb-icon fas icon="edit"></mdb-icon>
+                  </button>
+                  <button
+                       (click)="borrar(a, i)"
+                       size="sm"
+                        color="danger"
+                        mdbBtn>
+                    <i class="fa fa-trash"></i>
+                  </button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <form (ngSubmit)="guardar(formulario, content)" #formulario="ngForm">
+        <div class="modal-header p-3 rounded z-depth-3 elegant-color-dark white-text text-center white-text">
+            <h4 class="modal-title text-center">Asesor Industrial</h4>
+            <button
+                type="button"
+                class="close text-white"
+                aria-label="Close"
+                (click)="d('Cross click')"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-row">
+                <div class="md-form col-md-12">
+                    <mdb-icon fas icon="id-card" class="prefix grey-text"></mdb-icon>
+                   <input
+                        type="text"
+                        class="form-control"
+                        required
+                        [(ngModel)]="asesor.nombre"
+                        name="nombre"
+                        mdbInput
+                    />
+                    <label>Nombre: </label>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="md-form col-md-6">
+                    <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+                    <input
+                        type="email"
+                        class="form-control"
+                        required
+                        [(ngModel)]="asesor.correo"
+                        name="correo"
+                        mdbInput
+                    />
+                    <label>Corrreo</label>
+                </div>
+                <div class="md-form col-md-6">
+                    <mdb-icon fas icon="phone" class="prefix grey-text"></mdb-icon>
+                    <input
+                        type="number"
+                        class="form-control"
+                        [(ngModel)]="asesor.telefono"
+                        name="telefono"
+                        mdbInput
+                    />
+                    <label>Teléfono</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="ng-autocomplete">
+                    <ng-autocomplete
+                    [data]="empresas"
+                    [searchKeyword]="keyword"
+                    (selected)='selectEvent($event)'
+                    placeHolder="Escriba el nombre de la empresa"
+                    [itemTemplate]="itemTemplate"
+                    historyIdentifier="empresas"
+                    [notFoundTemplate]="notFoundTemplate">>
+
+
+                    </ng-autocomplete>
+                    <ng-template #itemTemplate let-item>
+                        <a [innerHTML]="item.nombre"></a>
+                        </ng-template>
+
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                </div>
+                <!-- <div class="md-form col-md-6">
+                    <mdb-icon fas icon="briefcase" class="prefix grey-text"></mdb-icon>
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="asesor.carrera"
+                        name="carrera"
+                        mdbInput
+                    />
+                    <label>Carrera</label>
+                </div> -->
+            </div>
+
+
+        </div>
+        <div class="modal-footer align-content-center">
+            <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="c('Close click')"
+            >
+                Cerrar
+            </button>
+
+            <button
+                [disabled]="!formulario.valid"
+                class="btn btn-primary"
+                type="submit"
+            >
+                <i class="fa fa-save"></i>
+                Guardar
+            </button>
+        </div>
+    </form>
+</ng-template>
