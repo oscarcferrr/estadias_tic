@@ -4,6 +4,7 @@ import { LayoutComponent } from './layout.component';
 import { AuthGuard } from '../shared';
 
 
+
 const routes: Routes = [
     {
         path: '',
@@ -26,6 +27,9 @@ const routes: Routes = [
             {path: 'asesorAcademico', loadChildren: () => import('./asesor-academico/asesor-academico.module')
             .then(m => m.AsesorAcademicoModule), canActivate: [AuthGuard]},
             {path: 'usuarios', loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule),
+             canActivate: [AuthGuard]},
+             // tslint:disable-next-line:max-line-length
+             {path: 'asesorIndustrial', loadChildren: () => import('./asesor-industrial/asesor-industrial.module').then(m => m.AsesorIndustrialModule),
              canActivate: [AuthGuard]}
         ]
     }

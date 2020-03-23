@@ -200,7 +200,6 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                disabled
                                 name="calificacion"
                                 [(ngModel)]="empresa.calificacion"
                                 placeholder="Calificación"
@@ -221,7 +220,7 @@
                             ></textarea>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-dark pull-right" mdbBtn awNextStep>Siguiente</button>
+                    <button type="button" class="btn btn-dark pull-right" mdbBtn awNextStep> Siguiente <mdb-icon fas icon="arrow-circle-right" class="prefix grey-text"></mdb-icon></button>
                 </aw-wizard-step>
                 <aw-wizard-step
                     [navigationSymbol]="{ symbol: '2' }"
@@ -311,7 +310,7 @@
                         />
                     </div>
                 </div>
-                <button type="button" class="btn btn-dark pull-left" mdbBtn awPreviousStep>Anterior</button>
+                <button type="button" class="btn btn-dark pull-left" mdbBtn awPreviousStep><mdb-icon fas icon="arrow-circle-left" class="prefix grey-text"></mdb-icon> Regresar</button>
                 </aw-wizard-step>
             </aw-wizard>
         </div>
