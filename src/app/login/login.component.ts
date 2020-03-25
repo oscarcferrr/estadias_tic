@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
             res => {
                 console.log(res[0]);
                 try {
-                    if (res[0].estatus === 'activo') {
+                    if (res[0].estatus === 'Activo') {
                         this.navigateOk();
                         localStorage.setItem('isLoggedin', 'true');
                     }
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
             }
         );   */
         localStorage.setItem('isLoggedin', 'true');
-        this.router.navigateByUrl('/charts');
+        this.router.navigateByUrl('/alumnos');
     }
 
     navigateErr() {

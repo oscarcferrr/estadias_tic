@@ -25,7 +25,7 @@ export class EmpresasService {
     return this.http.post(`${this.url}/save-enterprise`, empresa);
   }
   actualizaEmpresa(empresa: EmpresasModel) {
-    return this.http.put(`${this.url}/update-student/${empresa.id_empresa}`, empresa);
+    return this.http.put(`${this.url}/update-enterprise/${empresa.id_empresa}`, empresa);
   }
    borrarEmpresa(empresa: EmpresasModel) {
     const params = new HttpParams()
